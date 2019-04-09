@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import { assert } from 'assert'
 import router from '../routes/';
+import request from 'supertest';
 
 chai.use(chaiHttp);
 
@@ -16,15 +17,15 @@ chai.use(chaiHttp);
 
 
 
-describe('index page should render, hello world', () => {
-it('should render hello world 200', () => {     
-  return chai.request(router)
-   .get('/user')
-   .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.length.should.be.eql(0);
-     done();
-   });
- });   
+describe('index page should render 200 request', () => {
+  it('should get index 200', () => {     
+    request(router)
+      .get('/')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end((err, res) => {
+        if (err) throw err;
+      });
+    });  
 })
