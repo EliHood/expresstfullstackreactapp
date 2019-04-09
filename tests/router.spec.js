@@ -20,6 +20,26 @@ describe('index page should render 200 request', () => {
   });
 })
 
+describe('index page should index message', () => {
+  it('should get index messsage', (done) => {     
+    request(router)
+      .get('/')
+      .send({
+        'message': 'hello world',
+      })
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+    
+      .expect(200, {
+        message: "Hello World"
+      }, done)
+     
+     
+      
+  });
+})
+
+
 
 describe('index page should render 400 error', () => {
   it('should get 404 error 400', (done) => {     
