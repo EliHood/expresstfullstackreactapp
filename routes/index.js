@@ -1,11 +1,18 @@
 import express from 'express';
 
-const app = express();
+const router = express();
 
-app.get('/', (req, res) => {
-   return res.status(200).json({
-        message: "Hello World"
-    })
+router.get('/', (req, res) => {
+    res.status(200).json({
+        message: 'Helo World'
+    });
 })
 
-export default app;
+router.get('/404', (req, res) => {
+    res.status(400).json({
+        message: '404 error'
+   })
+})
+
+
+export default router;
