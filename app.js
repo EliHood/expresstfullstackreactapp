@@ -3,7 +3,8 @@ import bodyParser from "body-parser";
 import cors from 'cors';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
-import userRoutes from './routes/';
+import mainRoutes from './routes/';
+import userRoutes from './routes/users';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 const app = express();
@@ -20,7 +21,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // logs get/posts requests
 app.use(morgan("dev"));
 
-app.use('/', userRoutes);
+app.use('/', mainRoutes);
+app.use('/api/users', userRoutes);
 
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
