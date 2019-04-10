@@ -9,15 +9,6 @@ users.get('/', (req, res) => {
     });
 })
 
-users.get('/users', (req, res) => {
-    return knex('users')
-        .then( (users) => {
-            res.json({
-                users: users
-            })
-        });
-})
-
 
 
 export default users;
